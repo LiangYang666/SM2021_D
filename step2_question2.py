@@ -27,7 +27,7 @@ def create_model():
 def get_important_columns():
     # importances_pd = pd.read_excel("data/question1/gray.xlsx")
     importances_pd = pd.read_excel("data/question1/importances_pd.xlsx")
-    importances_20 = importances_pd.head(20)
+    importances_20 = importances_pd.head(40)
     columns = importances_20['column'].to_list()
     return columns
 
@@ -43,11 +43,6 @@ def train_and_predict_question2(folds=1, data_indices=None):
         test_data = pd.read_excel(f"data/train_data/test_data{data_index}.xlsx")
         print("over ！")
 
-        # select_columns
-        # %%
-        # train_data_scale = train_data.apply(lambda x: (x - np.min(x)) / (np.max(x) - np.min(x)))
-        train_data = pd.read_excel("data/train_data/train_data0.xlsx")
-        test_data = pd.read_excel("data/train_data/test_data0.xlsx")
         # %%
         select_columns = get_important_columns()
 
@@ -76,7 +71,7 @@ def train_and_predict_question2(folds=1, data_indices=None):
 
 
 if __name__ == "__main__":
-    logging = init_logger(log_dir='data/question2', log_file='train_and_predict_question2.txt', mode='a')
+    logging = init_logger(log_dir='./log', log_file='train_and_predict_question2.txt', mode='a')
 
     errors = train_and_predict_question2(folds=2, data_indices=None)     # 重点
 

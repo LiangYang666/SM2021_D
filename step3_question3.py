@@ -71,7 +71,7 @@ def train_and_predict(folds=1, data_indices=None):
 
 
 if __name__ == "__main__":
-    logging = init_logger(log_dir='data/question2', log_file='train_and_predict_question3.txt', mode='a')
+    logging = init_logger(log_dir='./log', log_file='train_and_predict_question3.txt', mode='a')
 
     scores = train_and_predict(folds=2, data_indices=None)  # 重点
 
