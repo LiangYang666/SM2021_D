@@ -14,21 +14,25 @@ from tool_ogging import init_logger
 
 # 设置模型
 def create_model():
-    model = pl.make_pipeline(
-        sp.PolynomialFeatures(8),  # 多项式特征拓展器
-        lm.LinearRegression()  # 线性回归器
-    )
-    # model = RandomForestRegressor(n_estimators=10000, random_state=0, n_jobs=-1)
+    # model = pl.make_pipeline(
+    #     sp.PolynomialFeatures(2),  # 多项式特征拓展器
+    #     lm.LinearRegression()  # 线性回归器
+    # )
+    model = RandomForestRegressor(n_estimators=10000, random_state=0, n_jobs=-1)
     # model = RandomForestRegressor(n_estimators=10000, random_state=0, n_jobs=-1)
     return model
-
 
 # 选出需要的列
 def get_important_columns():
     # importances_pd = pd.read_excel("data/question1/gray.xlsx")
+    feature_20 = [0, 1, 2, 4, 5, 9, 13, 14, 17, 19, 20, 21, 22, 25, 26, 27, 29, 31, 38, 42]
+
     importances_pd = pd.read_excel("data/question1/importances_pd.xlsx")
-    importances_20 = importances_pd.head(40)
-    columns = importances_20['column'].to_list()
+    columns = importances_pd.iloc[feature_20]['column'].to_list()
+    # total = 20
+    # importances_20 = importances_pd.head(total)
+    # logging.info(f"select_columns total {total}")
+    # columns = importances_20['column'].to_list()
     return columns
 
 
@@ -73,7 +77,7 @@ def train_and_predict_question2(folds=1, data_indices=None):
 if __name__ == "__main__":
     logging = init_logger(log_dir='./log', log_file='train_and_predict_question2.txt', mode='a')
 
-    errors = train_and_predict_question2(folds=2, data_indices=None)     # 重点
+    errors = train_and_predict_question2(folds=4, data_indices=None)     # 重点
 
     logging.info(errors)
 
