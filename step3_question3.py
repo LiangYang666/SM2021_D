@@ -14,7 +14,7 @@ from sklearn.decomposition import PCA
 import json
 
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
-from tool_ogging import init_logger
+from tool_logging import init_logger
 
 
 def create_model():
